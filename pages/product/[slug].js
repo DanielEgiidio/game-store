@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-
-import { client, urlFor } from "../../Lib/client";
 import {
   AiOutlineMinus,
   AiOutlinePlus,
@@ -8,13 +6,20 @@ import {
   AiOutlineStar,
 } from "react-icons/ai";
 
+import { client, urlFor } from "../../lib/client";
 import { Product } from "../../components";
 import { useStateContext } from "../../context/StateContext";
 
 const ProductDetails = ({ product, products }) => {
   const { image, name, details, price } = product;
   const [index, setIndex] = useState(0);
-  const { decQty, incQty, qty, onAdd } = useStateContext();
+  const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
+
+  const handleBuyNow = () => {
+    onAdd(product, qty);
+
+    setShowCart(true);
+  };
 
   return (
     <div>
@@ -75,7 +80,7 @@ const ProductDetails = ({ product, products }) => {
             >
               Adicionar ao Carrinho
             </button>
-            <button type="button" className="buy-now" onClick="">
+            <button type="button" className="buy-now" onClick={handleBuyNow}>
               Comprar Agora
             </button>
           </div>
