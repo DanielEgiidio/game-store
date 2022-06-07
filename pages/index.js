@@ -1,6 +1,6 @@
 import React from "react";
 
-import { client } from "../Lib/client";
+import { client } from "../lib/client";
 
 import { Product, FooterBanner, HeadBanner } from "../components";
 
