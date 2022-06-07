@@ -4,7 +4,6 @@ import { client } from "../Lib/client";
 
 import { Product, FooterBanner, HeadBanner } from "../components";
 
-console.log();
 const Home = ({ products, bannerData }) => (
   <div>
     <HeadBanner headBanner={bannerData.length && bannerData[0]} />

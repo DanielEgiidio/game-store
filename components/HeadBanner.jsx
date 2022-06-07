@@ -15,9 +15,6 @@ const HeadBanner = ({ headBanner }) => {
           className="head-banner-image"
         />
         <div>
-          <Link href={`/product/${headBanner.product}`}>
-            <button type="button">{headBanner.buttonText}</button>
-          </Link>
           <div className="desc">
             <h5>Descrição</h5>
             <p>{headBanner.desc}</p>
