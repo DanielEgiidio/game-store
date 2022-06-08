@@ -20,7 +20,7 @@ const Cart = () => {
     totalQuantities,
     cartItems,
     setShowCart,
-    toggleCartItemQuantity,
+    toggleCartItemQuanitity,
     onRemove,
   } = useStateContext();
 
@@ -39,7 +39,7 @@ const Cart = () => {
 
     const data = await response.json();
 
-    toast.loading("Redirecionando...");
+    toast.loading("Redirecting...");
 
     stripe.redirectToCheckout({ sessionId: data.id });
   };
@@ -53,27 +53,29 @@ const Cart = () => {
           onClick={() => setShowCart(false)}
         >
           <AiOutlineLeft />
-          <span className="heading">Seu Carrinho</span>
+          <span className="heading">Seu Carrinho de Compras</span>
           <span className="cart-num-items">({totalQuantities} items)</span>
         </button>
+
         {cartItems.length < 1 && (
           <div className="empty-cart">
             <AiOutlineShopping size={150} />
-            <h3>Seu carrinho de compras está vazio</h3>
+            <h3>Seu Carrinho de compras está vazio</h3>
             <Link href="/">
               <button
                 type="button"
                 onClick={() => setShowCart(false)}
                 className="btn"
               >
-                Vamos as Compras!
+                Continuar Comprando
               </button>
             </Link>
           </div>
         )}
+
         <div className="product-container">
           {cartItems.length >= 1 &&
-            cartItems.map((item, index) => (
+            cartItems.map((item) => (
               <div className="product" key={item._id}>
                 <img
                   src={urlFor(item?.image[0])}
@@ -82,7 +84,7 @@ const Cart = () => {
                 <div className="item-desc">
                   <div className="flex top">
                     <h5>{item.name}</h5>
-                    <h4>R${item.price},00</h4>
+                    <h4>${item.price}</h4>
                   </div>
                   <div className="flex bottom">
                     <div>
@@ -90,16 +92,18 @@ const Cart = () => {
                         <span
                           className="minus"
                           onClick={() =>
-                            toggleCartItemQuantity(item._id, "dec")
+                            toggleCartItemQuanitity(item._id, "dec")
                           }
                         >
                           <AiOutlineMinus />
                         </span>
-                        <span className="num">{item.quantity}</span>
+                        <span className="num" onClick="">
+                          {item.quantity}
+                        </span>
                         <span
                           className="plus"
                           onClick={() =>
-                            toggleCartItemQuantity(item._id, "inc")
+                            toggleCartItemQuanitity(item._id, "inc")
                           }
                         >
                           <AiOutlinePlus />
@@ -122,10 +126,10 @@ const Cart = () => {
           <div className="cart-bottom">
             <div className="total">
               <h3>Subtotal:</h3>
-              <h3>${totalPrice}</h3>
+              <h3>R${totalPrice},00</h3>
             </div>
             <div className="btn-container">
-              <button className="btn" type="button" onClick={handleCheckout}>
+              <button type="button" className="btn" onClick={handleCheckout}>
                 Pagar com Stripe
               </button>
             </div>
