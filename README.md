@@ -27,7 +27,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 Você pode acessar a aplicação Web onde foi feito deploy na Vercel utilizando as estrategias de CI/CD, ou roda-la localmente seguindo os procedimentos abaixo;
 
-- [Aplicação Web](https://gamer-store.vercel.app/p)
+- [Aplicação Web](https://gamer-store.vercel.app/)
 
 
 ```sh
